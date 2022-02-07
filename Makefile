@@ -3,12 +3,18 @@
 # Author: Grace Hunter
 #
 CC = gcc
-CFLAGS = -g -Wall -Werror -std=gnu99
+CFLAGS = -g -Wall -Werror -std=gnu99 -lm
 
-all: crypt
+all: crypt findkey
 
-crypt: crypt.c
-	$(CC) $(CFLAGS) -o crypt crypt.c
+crypt: crypt.c tools.o
+	$(CC) $(CFLAGS) -o crypt crypt.c tools.o
+
+findkey: findkey.c tools.o
+	$(CC) $(CFLAGS) -o findkey findkey.c tools.o
+
+tools.o: tools.c
+	$(CC) $(CFLAGS) -c tools.c
 
 clean:
 	rm -f *.o
