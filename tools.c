@@ -14,21 +14,32 @@
 
 #include "tools.h"
 
-double mean(double *data, int n){
-  double sum = 0;
+double mean(int *data, int n){
+  int sum = 0;
   int i;
   for(i = 0; i < n; i++) sum += data[i];
   return sum / n;
 }
 
-double std_deviation(double *data, double mean, int n){
+double std_deviation(int *data, double mean, int n){
   double sum = 0;
   int i;
   for(i = 0; i < n; i++) sum += pow(data[i] - mean, 2);
   return sqrt(sum / (n - 1));
 }
 
-double correlation(double *x, double *y, int n){
+/*
+double avg_std_deviation(int *x, int *y, int n){
+  double max_x = x[0], max_y = y[0];
+  int i;
+  for(i = 1; i < n; i++){
+    if(x[i] > max_x) max_x = x[i];
+    if(y[i] > max_y) max_y = y[i];
+  }
+  
+}
+*/
+double correlation(int *x, int *y, int n){
   double meanx = mean(x, n), meany = mean(y, n);
   double sx = std_deviation(x, meanx, n), sy = std_deviation(y, meany, n);
   double zx, zy, sum = 0;
