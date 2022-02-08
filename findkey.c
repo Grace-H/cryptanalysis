@@ -19,11 +19,11 @@ int build_freq_table(char *text, double *freq);
 int build_freq_tables(double **table, char *text, int keylen);
 
 double eng_freq[26] = {
-  0.07984, 0.01511, 0.02504, 0.04260, 0.12452,
-  0.02262, 0.02013, 0.06384, 0.07000, 0.00131,
-  0.00741, 0.03961, 0.02629, 0.06876, 0.07691,
-  0.01741, 0.00107, 0.05912, 0.06333, 0.09058,
-  0.02844, 0.01056, 0.02304, 0.00159, 0.02028, 0.00057 };
+  7984, 1511, 2504, 4260, 12452,
+  2262, 2013, 6384, 7000, 131,
+  741, 3961, 2629, 6876, 7691,
+  1741, 107, 5912, 6333, 9058,
+  2844, 1056, 2304, 159, 2028, 57 };
 
 int main(int argc, char **argv){
   char *ctext = calloc(sizeof(char), MAX_LINE_SIZE);
@@ -58,15 +58,18 @@ int main(int argc, char **argv){
       break;
     }
 
-    //if(keylen % 10 == 0)
-    fprintf(stderr, "Trying key length %d.\n", keylen);
-    if(frequencies == NULL) fprintf(stderr, "frequencies is null\n");
+    if(keylen % 10 == 0)
+      fprintf(stderr, "Trying key length %d.\n", keylen);
+    //if(frequencies == NULL) fprintf(stderr, "frequencies is null\n");
     build_freq_tables(frequencies, ctext, keylen);
-    
+    //fprintf(stderr, "after build freq tables\n");
     for(i = 0; i < keylen; i++){
       //      printf("B%d\n", i);
       //printf("%02x\n", &frequencies);
-
+      //if(frequencies == NULL)  fprintf(stderr, "frequencies is null\n");
+      //fprintf(stderr, "%02x\n", frequencies);
+      //if(frequencies[i] == NULL) fprintf(stderr, "frequencies[i] is null\n");
+      //  fprintf(stderr, "before find_shift\n");
       shift = find_shift(frequencies[i]);
       //printf("hello\n");
       if(isletter(shift)){
@@ -107,7 +110,7 @@ int main(int argc, char **argv){
       free(frequencies[i]);
     }
     free(frequencies);*/
-  } while((keylen == 1 && r < 0.85) || (keylen > 1 && r < 0.95));
+  } while((keylen == 1 && r < 0.85) || (keylen > 1 && r < 0.925));
   if(keylen <= MAX_KEY_SIZE)
      fprintf(stdout, "%s\n", key);
   /*
@@ -129,8 +132,8 @@ int build_freq_tables(double **table, char *text, int keylen){
   }
   //populate table
   int index = 0;
-  int counts[26];
-  for(i = 0; i < 26; i++){
+  int counts[keylen];
+  for(i = 0; i < keylen; i++){
     counts[i] = 0;
   }
   for(i = 0; i < strlen(text); i++){
@@ -142,11 +145,23 @@ int build_freq_tables(double **table, char *text, int keylen){
   }
 
   //divide by count for each row
-  for(i = 0; i < keylen; i++){
+  /*for(i = 0; i < keylen; i++){
     if(counts[i] != 0){
-      for(j = 0; j < 26; j++) table[i][j] /= counts[i];
+      for(j = 0; j < 26; j++){
+       
+	table[i][j] /= counts[i];
+      }
     }
-  }
+    }*/
+  /*
+  for(i = 0; i < keylen; i++){
+    for(j = 0; j < 26; j++){
+      fprintf(stderr, "[%d][%d]%lf, ", i, j, table[i][j]);
+    }
+    fprintf(stderr, "\n");
+    }*/
+  //  fprintf(stderr, "finished building tables.\n");
+  
   return 0;
 }
 
@@ -167,17 +182,17 @@ int build_freq_table(char *text, double *table){
   /*
   for(i = 0; i < 26; i++){
     fprintf(stderr, "%c: %lf\n", i + 65, table[i]);
-    }*/
+    }*//*
   if(count != 0)
     for(i = 0; i < 26; i++) table[i] /= count;
-
+       */
   return 0;
 }
 
 //find the shift for a letter frequency table
 //returns best shift found
 char find_shift(double *freq){
-  printf("find_shift\n");
+  //printf("find_shift\n");
   //build frequency table for ctext
   //  double *freq = calloc(sizeof(double), 26);
   //build_freq_table(ctext, freq, start, gap);
