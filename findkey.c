@@ -99,6 +99,16 @@ int main(int argc, char **argv){
   if(keylen <= MAX_KEY_SIZE)
      fprintf(stdout, "%s\n", key);
 
+  free(ctext);
+  free(buff);
+  free(key);
+  free(ctext_aux);
+  free(freq);
+  for(i = 0; i < MAX_KEY_SIZE; i++){
+    free(frequencies[i]);
+  }
+  free(frequencies);
+  
   return 0;
 }
 

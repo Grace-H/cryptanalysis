@@ -32,7 +32,8 @@ int main(int argc, char** argv){
   else{
     fprintf(stdout, "%s", encipher(ctext, argv[1]));
   }
-  
+
+  free(ctext);
   free(buff);
   return 0;
 }
