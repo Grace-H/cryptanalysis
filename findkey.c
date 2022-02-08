@@ -1,6 +1,6 @@
 /* 
  * Finds key to decrypt Caesar & Vigenere ciphertext
- * Note: does not work on Vigenere Challege
+ * Note: does not work on Vigenere Challege, hard took roughly 7" on my machine
  *
  * Author: Grace Hunter
  * CSCI 359 - Information Security
