@@ -19,3 +19,4 @@ tools.o: tools.c
 clean:
 	rm -f *.o
 	rm -f crypt
+	rm -f findkey

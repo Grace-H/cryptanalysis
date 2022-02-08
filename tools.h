@@ -1,5 +1,11 @@
 /*
  * tools.h - prototypes for cryptanalysis project
+ *
+ * Author: Grace Hunter
+ * CSCI 359 - Information Security
+ * Wheaton College, IL
+ * 
+ * Date: 07 February 2022
  */
 
 #ifndef TOOLS_H

@@ -4,6 +4,8 @@
  * Author: Grace Hunter
  * CSCI 359 - Information Security
  * Wheaton College, IL
+ *
+ * Date: 07 February 2022
  */
 
 #include <stdlib.h>
@@ -28,17 +30,6 @@ double std_deviation(int *data, double mean, int n){
   return sqrt(sum / (n - 1));
 }
 
-/*
-double avg_std_deviation(int *x, int *y, int n){
-  double max_x = x[0], max_y = y[0];
-  int i;
-  for(i = 1; i < n; i++){
-    if(x[i] > max_x) max_x = x[i];
-    if(y[i] > max_y) max_y = y[i];
-  }
-  
-}
-*/
 double correlation(int *x, int *y, int n){
   double meanx = mean(x, n), meany = mean(y, n);
   double sx = std_deviation(x, meanx, n), sy = std_deviation(y, meany, n);
