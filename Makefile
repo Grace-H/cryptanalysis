@@ -3,7 +3,7 @@
 # Author: Grace Hunter
 #
 CC = gcc
-CFLAGS = -g -Wall -Werror -std=gnu99 -lm
+CFLAGS = -g -Wall -std=gnu99 -lm -Og
 
 all: crypt findkey
 

@@ -6,7 +6,7 @@
 #define TOOLS_H
 
 #define MAX_LINE_SIZE 500000
-#define MAX_KEY_SIZE 200
+#define MAX_KEY_SIZE 1000
 //calculate mean of the dataset
 double mean(double *data, int n);
 

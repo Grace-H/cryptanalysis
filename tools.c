@@ -58,11 +58,13 @@ char backshift_char(char c, char shift){
 char *decipher(char *buff, char *key){
   int shifts = 0; //number of shifts completed
   int key_size = strlen(key);
+  
   //  fprintf(stderr, "strlen(key) = %d\n", key_size);
   int i;          //index in buff
   for(i = 0; i < strlen(buff); i++){
     if(isletter(buff[i])){
-      buff[i] = backshift_char(toupper(buff[i]), key[shifts++ % key_size]);
+      buff[i] = backshift_char(toupper(buff[i]), key[shifts % key_size]);
+      shifts++;
     }
   }
   //  fprintf(stderr, "finished decrypting");
